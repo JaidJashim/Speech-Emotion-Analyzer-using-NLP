@@ -1,0 +1,61 @@
+Algorithms Used
+
+This project be used to build machine learning classifiers as well as regressors for the case of 3 emotions {'sad': 0, 'neutral': 1, 'happy': 2} and the case of 5 emotions {'angry': 1, 'sad': 2, 'neutral': 3, 'ps': 4, 'happy': 5}
+
+
+Classifiers::
+
+SVC
+RandomForestClassifier
+GradientBoostingClassifier
+KNeighborsClassifier
+MLPClassifier
+BaggingClassifier
+Recurrent Neural Networks (Keras)
+
+
+Regressors::
+
+SVR
+RandomForestRegressor
+GradientBoostingRegressor
+KNeighborsRegressor
+MLPRegressor
+BaggingRegressor
+Recurrent Neural Networks (Keras)
+
+Predicting
+Just pass an audio path to the rec.predict() method as shown below:
+
+# this is a neutral speech from emo-db
+print("Prediction:", rec.predict("data/emodb/wav/15a04Nc.wav"))
+
+# this is a sad speech from TESS
+print("Prediction:", rec.predict("data/tess_ravdess/validation/Actor_25/25_01_01_01_mob_sad.wav"))
+
+Output:
+
+Prediction: neutral
+Prediction: sad
+
+
+
+Determining the best model::
+In order to determine the best model, you can by:
+
+# loads the best estimators from `grid` folder that was searched by GridSearchCV in `grid_search.py`,
+# and set the model to the best in terms of test score, and then train it
+
+rec.determine_best_model(train=True)
+
+# get the determined sklearn model name
+print(rec.model.__class__.__name__, "is the best")
+
+# get the test accuracy score for the best estimator
+print("Test score:", rec.test_score())
+
+
+Testing::
+
+You can change emotions to predict, as well as models, type --help for more information.
+
